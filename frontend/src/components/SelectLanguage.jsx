@@ -5,12 +5,10 @@ const languages = [
   { id: 1, name: 'English' },
   { id: 2, name: 'French' },
   { id: 3, name: 'German' },
-  // Add more languages as needed
 ];
 
 const SelectLanguage = () => {
   const handleLanguageSelect = (language) => {
-    // Add logic to handle language selection (e.g., store selected language in state)
     console.log(`Selected language: ${language.name}`);
   };
 

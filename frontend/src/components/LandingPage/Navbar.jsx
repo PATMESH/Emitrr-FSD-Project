@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link } from "react-scroll";
 import { useNavigate,NavLink} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faBook, faEdit, faInbox, faCog, faQuestion, faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faBook, faEdit, faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 const CustomNavbar = ({ page }) => {
   const name = localStorage.getItem("name");
