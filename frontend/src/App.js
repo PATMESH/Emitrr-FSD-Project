@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import UserProfile from "./components/UserProfile";
 import LanguageDetails from "./components/LanguageDetails";
 import RegistrationForm from "./components/Register";
+import SelectLanguage from "./components/SelectLanguage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,6 +21,7 @@ function App() {
             element={<UserProfile user={user} />}
           ></Route>
           <Route path="/language/:id" element={<LanguageDetails />}></Route>
+          <Route path="/select" element={<SelectLanguage/>}></Route>
           <Route path="/" element={<Home />}></Route>
         </Routes>
       </div>

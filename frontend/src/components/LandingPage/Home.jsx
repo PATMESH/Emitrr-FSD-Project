@@ -13,7 +13,7 @@ import Footer from './Footer';
 const Home = () => {
   return (
     <div>
-      <CustomNavbar />
+      <CustomNavbar page={"home"}/>
       <Element name="home">
         <Section
           name="home"

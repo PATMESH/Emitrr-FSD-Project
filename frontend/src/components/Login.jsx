@@ -35,7 +35,7 @@ function Login({setUser}) {
           localStorage.setItem("email", ud["email"]);
           console.log("Hello");
           setUser({ name: ud["name"], email: email, id: ud["id"] });
-          navigate("/");
+          navigate("/select");
         } else {
           setError("An error occurred while fetching user details.");
         }
