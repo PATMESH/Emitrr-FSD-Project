@@ -2,8 +2,7 @@ import React from "react";
 
 const ContactForm = () => {
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your form submission logic here
+    e.preventDefault(); 
   };
 
   return (
