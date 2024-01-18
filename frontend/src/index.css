@@ -981,26 +981,28 @@ h1 {
   padding: 12px 20px;
   border: 2px dotted #0b467e;
   border-radius: 12px;
+  color: #006577;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 .language-item:hover {
-  background-color: #0b467e;
+  background-color: #006577;
   color: #fff;
   transform: scale(1.05); 
 }
 
 .selected-language {
   border: 2px groove white;
-  background-color: #074a92;
+  background-color: #006577;
   color: #fff;
 }
 
 .start-learning-btn {
   margin-top: 20px;
+  margin-bottom: 20px;
   padding: 12px 24px;
-  background-color: #0b467e;
+  background-color: #068574;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -1010,6 +1012,34 @@ h1 {
 }
 
 .start-learning-btn:hover {
-  background-color: #074a92;
+  background-color: #076659;
   transform: scale(1.05);
+}
+
+.disabled-learning-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 12px 24px;
+  background-color: #ccc;
+  color: #555;
+  border: none;
+  border-radius: 8px;
+  cursor: not-allowed;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.disabled-learning-btn:hover {
+  background-color: #ccc;
+}
+
+@media (max-width: 767px) {
+  .img-logo-container img{
+    width: 300px;
+  }
+  .select-language-container{
+    width: 100%;
+    padding: 0px;
+    margin-top: 5%;
+  }
 }

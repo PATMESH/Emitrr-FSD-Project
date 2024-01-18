@@ -56,7 +56,7 @@ const SelectLanguage = () => {
           </button>
         ) : (
           <button className="disabled-learning-btn" disabled>
-            Select a Language
+            Start Learning
           </button>
         )}
       </div>
