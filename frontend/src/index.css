@@ -759,8 +759,7 @@ span a:hover {
 
 .footer-col {
   width: 44%;
-  margin-bottom: 30px;
-  padding: 20px 30px;
+  padding: 2px 30px;
 }
 
 .contact-form {
@@ -808,7 +807,6 @@ span a:hover {
 .address-list,
 .company-list,
 .language-list {
-  list-style: none;
   padding: 0;
 }
 
@@ -837,5 +835,10 @@ span a:hover {
     width: 90%;
     padding: 10px;
     margin-bottom: 30px;
+    text-align: center;
   }
+  .form-input,
+  .form-textarea {
+      width: 98%;
+    }
 }

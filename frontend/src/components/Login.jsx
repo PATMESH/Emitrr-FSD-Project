@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from './LandingPage/Navbar'
 
 function Login({setUser}) {
   const [email, setEmail] = useState("");
@@ -49,6 +50,7 @@ function Login({setUser}) {
 
   return (
     <div>
+    <Navbar/>
       <div className="auth">
       <div className="imagebg"></div>
       <div className="imagebg1"></div>
