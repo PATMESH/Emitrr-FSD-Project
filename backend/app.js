@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -19,17 +19,18 @@ mongoose
     user: "patmesh2003",
     pass: "m7CtJEhB4FhGK7hM",
   })
-  .then(() => console.log("Connected to MongoDB"))
+  .then(() => console.log("Connected to MongoDB..."))
   .catch((error) => console.error("Error connecting to MongoDB:", error));
 
 
   const userSchema = new mongoose.Schema({
-    name: String,
+    username: String,
     email: { type: String, unique: true, required: true },
-    phone: String,
+    phno: String,
     password: { type: String, required: true },
-    dateOfBirth: Date,
-    city: String,
+    dob: Date,
+    location: String,
+    gender: String,
     profession: String,
     learnings: [{
       language: {
@@ -42,7 +43,7 @@ mongoose
     }]
   });
   
-  const User = mongoose.model('User', userSchema);
+  const User = mongoose.model('User-LLG', userSchema);
 
   
   const languageSchema = new mongoose.Schema({
@@ -64,16 +65,17 @@ mongoose
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const user = new User({
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
-        phone: req.body.phone,
+        phno: req.body.phno,
         password: hashedPassword,
-        dateOfBirth: req.body.dateOfBirth,
-        city: req.body.city,
+        dob: req.body.dob,
+        location: req.body.location,
+        gender: req.body.gender,
         profession: req.body.profession,
       });
       await user.save();
-      res.status(201).json({ message: 'User registered successfully' });
+      res.status(200).json({ message: 'User registered successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
