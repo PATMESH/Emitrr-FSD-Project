@@ -1,13 +1,39 @@
-import React from 'react'
-import CustomNavbar from './LandingPage/Navbar'
+import React from 'react';
+import CustomNavbar from './LandingPage/Navbar';
+
+const languages = [
+  { id: 1, name: 'English' },
+  { id: 2, name: 'French' },
+  { id: 3, name: 'German' },
+  // Add more languages as needed
+];
 
 const SelectLanguage = () => {
+  const handleLanguageSelect = (language) => {
+    // Add logic to handle language selection (e.g., store selected language in state)
+    console.log(`Selected language: ${language.name}`);
+  };
+
   return (
     <>
-    <CustomNavbar/>
-    <div>SelectLanguage</div>
+      <CustomNavbar />
+      <div className="select-language-container">
+        <h1>Select Your Language</h1>
+        <div className="language-list">
+          {languages.map((language) => (
+            <div
+              key={language.id}
+              className="language-item"
+              onClick={() => handleLanguageSelect(language)}
+            >
+              {language.name}
+            </div>
+          ))}
+        </div>
+        <button className="start-learning-btn">Start Learning</button>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default SelectLanguage
+export default SelectLanguage;
