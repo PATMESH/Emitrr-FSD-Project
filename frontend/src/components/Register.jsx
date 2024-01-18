@@ -47,6 +47,7 @@ function RegistrationForm() {
 
   return (
     <div>
+    <Navbar/>
       <div className="registration-auth">
       <div className="imagebg"></div>
       <div className="imagebg1"></div>
