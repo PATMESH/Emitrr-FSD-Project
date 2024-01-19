@@ -129,7 +129,7 @@ const LearnPage = () => {
       <div>
         <div style={{display:'flex' , justifyContent:'space-between' , padding:' 10px 30px'}}>
         <div><h1>{languageInfo.name} Learning</h1></div>
-        <div><button className='quit-btn' style={{}}>Quit Learning...</button></div>
+        <div><button className='quit-btn' onClick={()=>navigate("/mylearnings")}>Quit Learning...</button></div>
         </div>
         <p style={{padding:'10px 30px'}}>Completed Exercises: {languageInfo.completedExercises}</p>
         {languageInfo.exercises.length > 0 ? (

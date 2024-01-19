@@ -1495,6 +1495,10 @@ input[type="file"] {
   background-color: #0056b3;
 }
 
+button{
+  cursor: pointer;
+}
+
 
 .quit-btn{
   background-color:rgb(255, 133, 133);

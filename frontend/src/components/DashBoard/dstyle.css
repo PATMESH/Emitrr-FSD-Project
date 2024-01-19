@@ -588,7 +588,11 @@ body {
 .delete-button{
 	border: none;
 	background-color: white;
-	color:red
+	color:red;
+	font-size: 14px;
+}
+.delete-button:hover{
+	background-color: white;
 }
 .edit-button{
 	border: none;
