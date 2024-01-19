@@ -31,14 +31,16 @@ const CustomNavbar = ({ page }) => {
     navigate("/login");
   };
 
-  const handleDropdownItemClick = async(path) => {
+  const handleDropdownItemClick = async (path) => {
     setOpen(false);
-    if(path === '/'){
+    console.log(path);
+    if (path === '/') {
       await localStorage.removeItem("name");
       await localStorage.removeItem("email");
     }
     navigate(path);
   };
+  
 
 
   return (
@@ -73,9 +75,9 @@ const CustomNavbar = ({ page }) => {
 
                 <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`}>
                   <ul>
-                    <DropdownItem icon={faUser} text={'My Profile'} path="/profile" onClick={() => handleDropdownItemClick('/profile')} />
-                    <DropdownItem icon={faBook} text={'Learnings'} path="/mylearnings" onClick={() => handleDropdownItemClick('/mylearnings')} />
-                    <DropdownItem icon={faSignOutAlt} text={'Logout'} path="/" onClick={() => handleDropdownItemClick('/')} />
+                    <DropdownItem icon={faUser} text={'My Profile'} path="/profile" handleDropdownItemClick={handleDropdownItemClick} />
+                    <DropdownItem icon={faBook} text={'Learnings'} path="/mylearnings" handleDropdownItemClick={handleDropdownItemClick} />
+                    <DropdownItem icon={faSignOutAlt} text={'Logout'} path="/" handleDropdownItemClick={handleDropdownItemClick} />
                   </ul>
                 </div>
               </div>
@@ -99,9 +101,9 @@ const CustomNavbar = ({ page }) => {
   );
 };
 
-const DropdownItem = ({ icon, text, path }) => (
+const DropdownItem = ({ icon, text, path , handleDropdownItemClick }) => (
   <li className="dropdownItem">
-      <NavLink to={path} activeClassName="active-nav">
+      <NavLink activeClassName="active-nav" onClick={()=>handleDropdownItemClick(path)}>
         <FontAwesomeIcon icon={icon} style={{marginRight:'5px'}}/>
         {text}
       </NavLink>
