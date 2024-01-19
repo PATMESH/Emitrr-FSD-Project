@@ -11,6 +11,7 @@ import Dashboard from "./components/DashBoard/Dashboard";
 import Users from "./components/DashBoard/DUsers";
 import Courses from "./components/DashBoard/DLanguages";
 import AddLanguage from "./components/DashBoard/AddLanguage";
+import Profile from "./components/profile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -31,6 +32,7 @@ function App() {
           ></Route>
           <Route path="/Learning/:language" element={<Learning />}></Route>
           <Route path="/select" element={<SelectLanguage />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
           <Route path="/" element={<Home />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/Dusers" element={<Users />}></Route>

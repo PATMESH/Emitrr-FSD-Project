@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
+import CustomNavbar from "./LandingPage/Navbar";
 import ImgUpload from "./ImgUpload";
-import Performance from "./DashBoard/Performance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
@@ -58,7 +57,7 @@ function Profile() {
 
   return (
     <div>
-      <Navbar page={"profile"} />
+      <CustomNavbar page={"profile"} />
       <div className="profile-card" id="pbg" style={{ marginTop: '3%' }}>
         <ImgUpload onChange={handleImageChange} src={profileImage} />
         <h2 className="profile-name">{userDetails?.username}</h2>
@@ -129,7 +128,7 @@ function Profile() {
           </a>
         </div>
       </div>
-      <Performance />
+      
     </div>
   );
 }
