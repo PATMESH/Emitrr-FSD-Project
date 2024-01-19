@@ -1,8 +1,52 @@
 # Language Learning Game Platform
 
+
+## Setup
+
+1. **Navigate to Frontend Directory:**
+    ```bash
+    cd frontend
+    ```
+
+2. **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+
+3. **Navigate to Backend Directory:**
+    ```bash
+    cd backend
+    ```
+
+4. **Install Dependencies:**
+    ```bash
+    npm install
+    npm install nodemon
+    ```
+
+5. **Start Backend Server:**
+    ```bash
+    npm start
+    ```
+
+6. **Start Frontend Server:**
+    ```bash
+    cd frontend
+    npm start
+    ```
+
+7. Visit the application on http://localhost:3000.
+
+8. Users can register, log in, choose a language, and start language exercises.
+
+9. Admins can access the dashboard to manage languages, exercises, and monitor user progress.
+
+
+
+
 ## Overview
 
-This language learning game platform is designed to facilitate interactive language learning. The frontend is developed using React.js, the backend is powered by Spring Boot, and MongoDB serves as the database. The platform supports user profiles, progress tracking, language management, exercises, and an admin dashboard for content management.
+Language Learning platform is a Full Stack Development project with a Node.js backend, React.js frontend, and MongoDB database. It's designed as an event management platform, allowing users to create, manage, and attend events. The project emphasizes real-time communication and seamless user interaction.
 
 ## Features
 
@@ -37,33 +81,12 @@ This language learning game platform is designed to facilitate interactive langu
   - Styled with CSS
 
 - **Backend:**
-  - Spring Boot
-  - RESTful API architecture
+  - Node.js
+  - Express.js
 
 - **Database:**
   - MongoDB
-  - Collections: users, languages, exercises, progress
+  - Collections: users, languages
 
-## Setup
-
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/PATMESH/Emitrr-FSD-Project.git
-    ```
-
-2. Navigate to the frontend and backend folders and follow their respective setup instructions.
-
-3. Run the frontend (React.js) on http://localhost:3000 and the backend (Node.js) on http://localhost:8000.
-
-4. Set up MongoDB and configure the connection.
-
-## Usage
-
-- Visit the application on http://localhost:3000.
-
-- Users can register, log in, choose a language, and start language exercises.
-
-- Admins can access the dashboard to manage languages, exercises, and monitor user progress.
-
-- Explore the interactive language learning experience and enhance your language skills!
+    
+Explore the interactive language learning experience and enhance your language skills!
