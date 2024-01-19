@@ -21,7 +21,7 @@ function App() {
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/login" element={<Login setUser={setUser} />}></Route>
+          <Route path="/login" element={<Login/>}></Route>
           <Route path="/register" element={<RegistrationForm />}></Route>
           <Route
             path="/LanguageProfile/:language"
