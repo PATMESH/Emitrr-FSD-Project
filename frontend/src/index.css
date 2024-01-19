@@ -1284,3 +1284,122 @@ h1 {
   color: red;
   margin-top: 10px;
 }
+
+
+/* profile css */
+
+.profile-card {
+  width: 500px;
+  height: 80vh;
+  padding: 40px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  text-align: center;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.377);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.profile-card:hover {
+  box-shadow: 1px 1px 25px 0px #3fa1a9;
+}
+
+.profile-card h2 {
+  color: #0056b3;
+  transition: color 0.3s;
+}
+
+.profile-card:hover h2 {
+  color: #63d3a6;
+}
+
+.profile-card p {
+  text-align: center;
+}
+
+.profile-card div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-name {
+  font-size: 24px;
+  margin: 3px 0;
+  transition: color 0.3s;
+}
+
+.profile-card:hover .profile-name {
+  color: #63d3a6;
+}
+
+.profile-email,
+.profile-phno,
+.profile-dob,
+.profile-gender {
+  font-size: 16px;
+  margin: 2px 0;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.profile-card:hover .profile-email,
+.profile-card:hover .profile-phno,
+.profile-card:hover .profile-about,
+.profile-card:hover .profile-institution,
+.profile-card:hover .profile-role,
+.profile-card:hover .profile-domain {
+  color: #63d3a6;
+}
+
+
+/* ImgUpload.css */
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  padding: 6px;
+  cursor: pointer;
+  background: linear-gradient(270deg, #3fa1a9, #79f1a4);
+  margin-bottom: 15px;
+}
+
+.img-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.img-upload:before {
+  content: "\1F4F8";
+  font-family: "Font Awesome";
+  font-size: 90px;
+  position: absolute;
+  padding-top: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #63d3a6;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #fff;
+}
+
+.img-upload:hover:before {
+  opacity: 1;
+}
