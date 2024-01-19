@@ -49,6 +49,9 @@ mongoose
   const languageSchema = new mongoose.Schema({
     name: String,
     details: String,
+    difficultyLevel: String,
+    commonlySpoken: String,
+    script: String,
     exercises: [{
       title: String,
       questions: [{
@@ -57,7 +60,8 @@ mongoose
         correctOption: Number
       }]
     }]
-  });
+  });   
+  
   
   const Language = mongoose.model('Language', languageSchema);
   
@@ -82,6 +86,25 @@ mongoose
     }
   });
 
+app.get('/users', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.get('/languages', async (req, res) => {
+  try {
+    const languages = await Language.find();
+    res.status(200).json(languages);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
   app.post('/login', async (req, res) => {
@@ -133,6 +156,14 @@ mongoose
   
   app.post('/language', async (req, res) => {
     try {
+      const { name } = req.body;
+  
+      const existingLanguage = await Language.findOne({ name });
+  
+      if (existingLanguage) {
+        return res.status(400).json({ error: 'Language with the same name already exists' });
+      }
+  
       const language = new Language(req.body);
       await language.save();
       res.status(201).json({ message: 'Language added successfully' });
@@ -140,7 +171,7 @@ mongoose
       console.error(error);
       res.status(500).json({ error: 'Internal server error' });
     }
-  });
+  });  
   
   app.post('/exercise/:languageId', async (req, res) => {
     try {

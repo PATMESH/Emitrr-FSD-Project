@@ -3,7 +3,7 @@ import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link } from "react-scroll";
 import { useNavigate,NavLink} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faBook, faEdit, faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faBook, faEdit, faSignOutAlt, faUserCircle, faBars } from "@fortawesome/free-solid-svg-icons";
 
 const CustomNavbar = ({ page }) => {
   const name = localStorage.getItem("name");
@@ -64,7 +64,7 @@ const CustomNavbar = ({ page }) => {
             {isAuthenticated ? (
               <div className='menu-container' ref={menuRef}>
                 <div className='menu-trigger' onClick={() => setOpen(!open)}>
-                  <p>{name}</p><FontAwesomeIcon icon={faUserCircle} className="dropdown-icon"/>
+                  <p>{name}</p><FontAwesomeIcon icon={faUserCircle} className="dropdown-icon"/>&nbsp;<FontAwesomeIcon icon={faBars}/>
                 </div>
 
                 <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`}>
@@ -99,7 +99,7 @@ const CustomNavbar = ({ page }) => {
 const DropdownItem = ({ icon, text, path }) => (
   <li className="dropdownItem">
       <NavLink to={path} activeClassName="active-nav">
-        <FontAwesomeIcon icon={icon} />
+        <FontAwesomeIcon icon={icon} style={{marginRight:'5px'}}/>
         {text}
       </NavLink>
     </li>

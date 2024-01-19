@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from './LandingPage/Navbar'
 
@@ -6,8 +6,15 @@ function Login({setUser}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const name = localStorage.getItem("name");
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(name){
+      navigate("/select");
+    }
+  });
 
 
   const login = async (e) => {
@@ -35,7 +42,7 @@ function Login({setUser}) {
           localStorage.setItem("email", ud["email"]);
           console.log("Hello");
           setUser({ name: ud["name"], email: email, id: ud["id"] });
-          navigate("/select");
+          navigate("/");
         } else {
           setError("An error occurred while fetching user details.");
         }
