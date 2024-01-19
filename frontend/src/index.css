@@ -1430,3 +1430,83 @@ input[type="file"] {
   margin: 10px;
   border-radius: 10px;
 }
+
+
+/* ExerciseCard.css */
+.exercise-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-container {
+  margin-bottom: 20px;
+}
+
+.option-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+.show-answer-btn {
+  background-color: #007710;
+  color: #fff;
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.show-answer-btn:hover {
+  background-color: #0056b3;
+}
+
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.nav-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+}
+
+
+.quit-btn{
+  background-color:rgb(255, 133, 133);
+  font-weight: 600;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 1s , transform 1s;
+}
+
+
+.quit-btn:hover{
+  transform: scale(1.05);
+  background-color:rgb(192, 38, 38);
+}

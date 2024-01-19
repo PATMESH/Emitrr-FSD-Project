@@ -43,7 +43,7 @@ function Courses() {
   console.log(languages);
 
   function editCourse(_id) {
-    navigate(`/editCourse/${_id}`);
+    //navigate(`/editCourse/${_id}`);
   }
   function addquestions(_id){
     navigate(`/addquestions/${_id}`)

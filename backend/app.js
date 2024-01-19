@@ -249,6 +249,36 @@ app.get('/languages', async (req, res) => {
     }
   });
 
+  app.put('/update-learning/:email', async (req, res) => {
+    const { email } = req.params;
+    const { language, progress, exercisesCompleted } = req.body;
+  
+    try {
+      const user = await User.findOne({ email });
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      const learningDataIndex = user.learnings.findIndex((learning) => learning.name === language);
+  
+      if (learningDataIndex === -1) {
+        return res.status(404).json({ error: 'Learning data not found for the specified language' });
+      }
+  
+      user.learnings[learningDataIndex].progress = progress;
+
+      user.learnings[learningDataIndex].exercisesCompleted = exercisesCompleted || 0;
+  
+      await user.save();
+  
+      return res.status(200).json({ message: 'Learning progress updated successfully' });
+    } catch (error) {
+      console.error('Error updating learning progress:', error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
 
   app.post('/language/:id/exercises', async (req, res) => {
     try {
