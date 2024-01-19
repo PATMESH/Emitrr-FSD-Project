@@ -43,7 +43,7 @@ function Courses() {
   console.log(languages);
 
   function editCourse(_id) {
-    //navigate(`/editCourse/${_id}`);
+    navigate(`/editLanguage/${_id}`);
   }
   function addquestions(_id){
     navigate(`/addquestions/${_id}`)
@@ -89,7 +89,7 @@ function Courses() {
                             </button>
 
                             <button
-                              onClick={() => editCourse(language.id)}
+                              onClick={() => editCourse(language._id)}
                               style={{ marginRight: "40px" ,backgroundColor:'white'}}
                               className="edit-button"
                             >

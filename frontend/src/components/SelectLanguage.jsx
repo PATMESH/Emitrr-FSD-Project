@@ -9,23 +9,6 @@ const SelectLanguage = () => {
   const id = localStorage.getItem("email");
   const [userLearning, setUserLearning] = useState([]);
 
-  useEffect(() => {
-    fetch(`http://localhost:8000/user/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setUserLearning(data.learnings);
-      })
-      .catch((error) => {
-        console.error("Error fetching user details:", error);
-      });
-  }, [id]);
-
-
-  useEffect(()=>{
-    if(userLearning.length>0){
-      navigate("/mylearnings")
-    }
-  },[userLearning])
 
   const handleLanguageSelect = (language) => {
     setSelectedLanguage(language.name);

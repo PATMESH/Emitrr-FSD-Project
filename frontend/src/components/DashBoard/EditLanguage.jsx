@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const AddLanguage = () => {
+const EditLanguage = () => {
+  const { id } = useParams();
+  console.log(id);
+  const navigate = useNavigate();
   const [languageData, setLanguageData] = useState({
     name: "",
     details: "",
@@ -10,8 +13,28 @@ const AddLanguage = () => {
     commonlySpoken: "",
     script: "",
   });
-  const navigate = useNavigate();
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchLanguageDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/languageId/${id}`);
+        const languageDetails = response.data;
+        setLanguageData({
+          name: languageDetails.name,
+          details: languageDetails.details,
+          difficultyLevel: languageDetails.difficultyLevel,
+          commonlySpoken: languageDetails.commonlySpoken,
+          script: languageDetails.script,
+        });
+      } catch (error) {
+        setError("Error fetching language details");
+      }
+    };
+  
+    fetchLanguageDetails(); 
+  }, [id]);
+  
 
   const handleChange = (e) => {
     setLanguageData({
@@ -23,15 +46,8 @@ const AddLanguage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/language", languageData);
+      const response = await axios.put(`http://localhost:8000/language/${id}`, languageData);
       console.log(response.data);
-      setLanguageData({
-        name: "",
-        details: "",
-        difficultyLevel: "",
-        commonlySpoken: "",
-        script: "",
-      });
       setError("");
       navigate("/dLanguages");
     } catch (error) {
@@ -41,9 +57,9 @@ const AddLanguage = () => {
 
   return (
     <div className="add-language-form">
-      <h2 className="add-language-title">Add Language</h2>
+      <h2 className="add-language-title">Edit Language</h2>
       <form onSubmit={handleSubmit} className="language-form">
-        <label htmlFor="name" className="form-label">
+      <label htmlFor="name" className="form-label">
           Name:
         </label>
         <input
@@ -112,7 +128,7 @@ const AddLanguage = () => {
         />
 
         <button type="submit" className="form-button">
-          Submit
+          Update
         </button>
 
         {error && <p className="form-error-message">{error}</p>}
@@ -121,4 +137,4 @@ const AddLanguage = () => {
   );
 };
 
-export default AddLanguage;
+export default EditLanguage;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from './LandingPage/Navbar'
+import Navbar from "./LandingPage/Navbar";
 
-function Login({setUser}) {
+function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -10,12 +10,11 @@ function Login({setUser}) {
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(name){
+  useEffect(() => {
+    if (name) {
       navigate("/select");
     }
   });
-
 
   const login = async (e) => {
     e.preventDefault();
@@ -41,7 +40,12 @@ function Login({setUser}) {
           localStorage.setItem("name", ud["username"]);
           localStorage.setItem("email", ud["email"]);
           setUser({ name: ud["name"], email: email, id: ud["id"] });
-          navigate("/");
+
+          if (ud.learnings.length > 0) {
+            navigate("/mylearnings");
+          } else {
+            navigate("/select");
+          }
         } else {
           setError("An error occurred while fetching user details.");
         }
@@ -56,15 +60,15 @@ function Login({setUser}) {
 
   return (
     <div>
-    <Navbar/>
+      <Navbar />
       <div className="auth">
-      <div className="imagebg"></div>
-      <div className="imagebg1"></div>
-      <div className="imagebg2"></div>
-      <div className="imagebg3"></div>
-      <div className="imagebg4"></div>
-      <div className="imagebg5"></div>
-      <div className="imagebg6"></div>
+        <div className="imagebg"></div>
+        <div className="imagebg1"></div>
+        <div className="imagebg2"></div>
+        <div className="imagebg3"></div>
+        <div className="imagebg4"></div>
+        <div className="imagebg5"></div>
+        <div className="imagebg6"></div>
         <div className="login-container">
           <h3>Welcome!</h3>
           <h2>Login</h2>

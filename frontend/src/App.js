@@ -14,6 +14,7 @@ import AddLanguage from "./components/DashBoard/AddLanguage";
 import Profile from "./components/profile";
 import LearnPage from "./components/LearnPage";
 import AddQuestions from "./components/DashBoard/AddQuestions";
+import EditLanguage from "./components/DashBoard/EditLanguage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -45,6 +46,7 @@ function App() {
           <Route path="/DLanguages" element={<Courses />}></Route>
           <Route path="/addlanguage" element={<AddLanguage />}></Route>
           <Route path="/addquestions/:id" element={<AddQuestions />}></Route>
+          <Route path="/editLanguage/:id" element={<EditLanguage />}></Route>
         </Routes>
       </div>
     </Router>

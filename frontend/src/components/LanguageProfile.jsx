@@ -79,7 +79,7 @@ const LanguageProfile = () => {
   }, [languageInfo.name, user.learnings]);
 
   return (
-    <>
+    <> 
       <CustomNavbar />
       <div className="language-profile-container">
         <div className="language-header">
@@ -113,7 +113,7 @@ const LanguageProfile = () => {
           </div>
           <div className="progress-section">
             <h3 className="section-title">Progress</h3>
-            {languageInfo.progress?languageInfo.progress:0}% completed
+            {languageInfo.progress&&languageInfo.progress}% completed
             <Progress
               percent={languageInfo.progress}
               status="active"

@@ -153,6 +153,52 @@ app.get('/languages', async (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
     }
   });
+
+  app.get('/languageId/:id', async (req, res) => {
+    try {
+      const language = await Language.findById(req.params.id);
+      if (!language) {
+        return res.status(404).json({ error: 'Language not found' });
+      }
+  
+      res.status(200).json(language);
+    } catch (error) {
+      console.error('Error fetching language by ID:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+
+  app.put('/language/:id', async (req, res) => {
+    const { id } = req.params;
+    const {
+      name,
+      details,
+      difficultyLevel,
+      commonlySpoken,
+      script
+    } = req.body;
+  
+    try {
+      const language = await Language.findByIdAndUpdate(id, {
+        name,
+        details,
+        difficultyLevel,
+        commonlySpoken,
+        script
+      }, { new: true });
+  
+      if (!language) {
+        return res.status(404).json({ error: 'Language not found' });
+      }
+  
+      res.status(200).json({ message: 'Language updated successfully', language });
+    } catch (error) {
+      console.error('Error updating language:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
   
   app.post('/language', async (req, res) => {
     try {
