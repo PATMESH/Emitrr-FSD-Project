@@ -13,7 +13,7 @@ const Learning = () => {
   useEffect(() => {
     async function fetchUserDetails() {
       try {
-        const userResponse = await fetch(`http://localhost:8000/user/${id}`);
+        const userResponse = await fetch(`https://language-learning-game-z20w.onrender.com/user/${id}`);
         if (!userResponse.ok) {
           throw new Error("Failed to fetch user details.");
         }
@@ -26,7 +26,7 @@ const Learning = () => {
 
     async function fetchAllLanguages() {
       try {
-        const languagesResponse = await fetch(`http://localhost:8000/languages`);
+        const languagesResponse = await fetch(`https://language-learning-game-z20w.onrender.com/languages`);
         if (!languagesResponse.ok) {
           throw new Error("Failed to fetch all languages.");
         }

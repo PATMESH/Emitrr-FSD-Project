@@ -19,7 +19,7 @@ function Login({ setUser }) {
   const login = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/login", {
+      const response = await fetch("https://language-learning-game-z20w.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,7 +32,7 @@ function Login({ setUser }) {
         localStorage.setItem("email", email);
         console.log(data.token);
         const userDetailsResponse = await fetch(
-          `http://localhost:8000/user/${email}`
+          `https://language-learning-game-z20w.onrender.com/user/${email}`
         );
 
         if (userDetailsResponse.ok) {

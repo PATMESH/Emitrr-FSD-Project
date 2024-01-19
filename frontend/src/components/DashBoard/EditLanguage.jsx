@@ -18,7 +18,7 @@ const EditLanguage = () => {
   useEffect(() => {
     const fetchLanguageDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/languageId/${id}`);
+        const response = await axios.get(`https://language-learning-game-z20w.onrender.com/languageId/${id}`);
         const languageDetails = response.data;
         setLanguageData({
           name: languageDetails.name,
@@ -46,7 +46,7 @@ const EditLanguage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:8000/language/${id}`, languageData);
+      const response = await axios.put(`https://language-learning-game-z20w.onrender.com/language/${id}`, languageData);
       console.log(response.data);
       setError("");
       navigate("/dLanguages");

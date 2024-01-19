@@ -25,7 +25,7 @@ const LearnPage = () => {
 
   const updateLearningProgress = async (language, completedExercises, progress) => {
     try {
-      const response = await axios.put(`http://localhost:8000/update-learning/${email}`, {
+      const response = await axios.put(`https://language-learning-game-z20w.onrender.com/update-learning/${email}`, {
         language,
         exercisesCompleted : completedExercises,
         progress,
@@ -56,7 +56,7 @@ const LearnPage = () => {
   useEffect(() => {
     const fetchLanguageInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/language/${language}`);
+        const response = await axios.get(`https://language-learning-game-z20w.onrender.com/language/${language}`);
 
         if (response.data) {
           const { name, exercises , totalExercises } = response.data;
@@ -80,7 +80,7 @@ const LearnPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/user/${email}`);
+        const response = await axios.get(`https://language-learning-game-z20w.onrender.com/user/${email}`);
         setUser(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -115,7 +115,7 @@ const LearnPage = () => {
   };
 
   const onFinish = async()=>{
-    const response = await axios.put(`http://localhost:8000/update-learning/${email}`, {
+    const response = await axios.put(`https://language-learning-game-z20w.onrender.com/update-learning/${email}`, {
         language,
         exercisesCompleted : languageInfo.exercises.length,
         progress:100,

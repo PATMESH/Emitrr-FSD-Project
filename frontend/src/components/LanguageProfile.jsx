@@ -36,7 +36,7 @@ const LanguageProfile = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/user/${email}`);
+        const response = await axios.get(`https://language-learning-game-z20w.onrender.com/user/${email}`);
         setUser(response.data);
       } catch (error) {
         console.error('Error fetching user details:', error);
@@ -45,7 +45,7 @@ const LanguageProfile = () => {
 
     const fetchLanguageInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/language/${language}`);
+        const response = await axios.get(`https://language-learning-game-z20w.onrender.com/language/${language}`);
         const { details, difficultyLevel, commonlySpoken, script, exercises } = response.data;
         setLanguageInfo((prevLanguageInfo) => ({
           ...prevLanguageInfo,

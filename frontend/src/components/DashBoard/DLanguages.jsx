@@ -31,7 +31,7 @@ function Courses() {
   const[menu , setMenu] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/languages`)
+    fetch(`https://language-learning-game-z20w.onrender.com/languages`)
       .then((response) => response.json())
       .then((data) => {
         setLanguages(data);

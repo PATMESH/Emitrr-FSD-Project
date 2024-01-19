@@ -16,7 +16,7 @@ const SelectLanguage = () => {
 
   const [languages, setLanguages] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:8000/languages`)
+    fetch(`https://language-learning-game-z20w.onrender.com/languages`)
       .then((response) => response.json())
       .then((data) => {
         setLanguages(data);
@@ -28,7 +28,7 @@ const SelectLanguage = () => {
 
   const handleStartLearning = () => {
     if (selectedLanguage) {
-      fetch(`http://localhost:8000/startLearning`, {
+      fetch(`https://language-learning-game-z20w.onrender.com/startLearning`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

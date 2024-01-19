@@ -42,7 +42,7 @@ const AddQuestions = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:8000/language/${id}/exercises`, exerciseData);
+      const response = await axios.post(`https://language-learning-game-z20w.onrender.com/language/${id}/exercises`, exerciseData);
       console.log(response.data);
       setExerciseData({
         title: "",

@@ -23,7 +23,7 @@ const AddLanguage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/language", languageData);
+      const response = await axios.post("https://language-learning-game-z20w.onrender.com/language", languageData);
       console.log(response.data);
       setLanguageData({
         name: "",

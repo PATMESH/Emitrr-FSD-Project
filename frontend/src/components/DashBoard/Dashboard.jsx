@@ -9,8 +9,8 @@ function Dashboard() {
   const[menu , setMenu] = useState(true);
 
   useEffect(()=>{
-     fetch("http://localhost:8000/users").then((data)=>data.json()).then((res)=>setUserscount(res.length));
-    fetch("http://localhost:8000/languages").then((data)=>data.json()).then((res)=>setCoursescount(res.length));
+     fetch("https://language-learning-game-z20w.onrender.com/users").then((data)=>data.json()).then((res)=>setUserscount(res.length));
+    fetch("https://language-learning-game-z20w.onrender.com/languages").then((data)=>data.json()).then((res)=>setCoursescount(res.length));
   },[])
 
   return (

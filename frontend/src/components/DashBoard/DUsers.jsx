@@ -7,7 +7,7 @@ function Users() {
   const[menu , setMenu] = useState(true);
 
   useEffect(()=>{
-    fetch("http://localhost:8000/users").then((data)=>data.json()).then((res)=>setUsers(res));
+    fetch("https://language-learning-game-z20w.onrender.com/users").then((data)=>data.json()).then((res)=>setUsers(res));
   },[])
   return (
     <div style={{backgroundColor:"#eee"}} >

@@ -17,7 +17,6 @@ import AddQuestions from "./components/DashBoard/AddQuestions";
 import EditLanguage from "./components/DashBoard/EditLanguage";
 
 function App() {
-  const [user, setUser] = useState(null);
 
   return (
     <Router>

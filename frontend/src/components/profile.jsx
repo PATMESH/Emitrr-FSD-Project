@@ -16,7 +16,7 @@ function Profile() {
   useEffect(() => {
     async function fetchUserDetails() {
       try {
-        const response = await fetch(`http://localhost:8000/user/${id}`);
+        const response = await fetch(`https://language-learning-game-z20w.onrender.com/user/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch user details.");
         }
