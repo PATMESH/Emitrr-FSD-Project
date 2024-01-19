@@ -49,7 +49,7 @@ This language learning game platform is designed to facilitate interactive langu
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/YOUR_USERNAME/Language-Learning-Game.git
+    git clone https://github.com/PATMESH/Emitrr-FSD-Project.git
     ```
 
 2. Navigate to the frontend and backend folders and follow their respective setup instructions.
