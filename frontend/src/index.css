@@ -1066,7 +1066,7 @@ h1 {
 
 .language-title {
   background-color: white;
-  width: 73%;
+  width: 76%;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 10px;
@@ -1196,10 +1196,11 @@ h1 {
   .top-scorers{
     width: 98%;
     margin-top: 10px;
+    padding: 20px 1px;
   }
   .language-title{
     padding: 14px;
-    width: 92%;
+    width: 98%;
   }
   .language-info{
     flex-direction: column;
@@ -1290,7 +1291,6 @@ h1 {
 
 .profile-card {
   width: 500px;
-  height: 80vh;
   padding: 40px;
   border: 1px solid #c4c4c4;
   border-radius: 5px;
@@ -1344,14 +1344,6 @@ h1 {
   transition: color 0.3s;
 }
 
-.profile-card:hover .profile-email,
-.profile-card:hover .profile-phno,
-.profile-card:hover .profile-about,
-.profile-card:hover .profile-institution,
-.profile-card:hover .profile-role,
-.profile-card:hover .profile-domain {
-  color: #63d3a6;
-}
 
 
 /* ImgUpload.css */
@@ -1402,4 +1394,39 @@ input[type="file"] {
 
 .img-upload:hover:before {
   opacity: 1;
+}
+
+
+.img-upload img {
+  width: 100%;
+  height: auto;
+}
+
+
+.my-learnings-container{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.377);
+}
+
+.learn-new-lang{
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.language-learning-list li {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  background-color: #0466ce1e;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
 }

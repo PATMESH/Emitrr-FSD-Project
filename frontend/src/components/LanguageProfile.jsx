@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomNavbar from './LandingPage/Navbar';
 import { useLocation } from 'react-router-dom';
 import { Progress } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const LanguageProfile = () => {
   const { pathname } = useLocation();
+  const email = localStorage.getItem('email');
   const language = pathname.split('/').pop();
-  const name = localStorage.getItem("name");
   const navigate = useNavigate();
-  const languageInfo = {
+
+  const [user, setUser] = useState({});
+  const [languageInfo, setLanguageInfo] = useState({
     name: language,
-    about: "A beautiful language to learn and explore. Dive into the rich culture and history. This language is known for its melodious sounds and expressive vocabulary.",
-    totalExercises: 90,
-    completedExercises: 80,
-    remainingExercises: 90 - 80,
-    progress: (90 / 80) * 100,
+    about: '',
+    totalExercises: 0,
+    completedExercises: 0,
+    remainingExercises: 0,
+    progress: 0,
+    additionalInfo: [],
     topUserPerformances: [
       { username: 'John', score: 90, icon: '🥇' },
       { username: 'Danny', score: 85, icon: '🥈' },
@@ -23,16 +27,56 @@ const LanguageProfile = () => {
       { username: 'Kelly', score: 75, icon: '🏅' },
       { username: 'Hitman', score: 70, icon: '🏅' },
     ],
-    additionalInfo: [
-      { label: 'Difficulty Level', value: 'Intermediate' },
-      { label: 'Commonly Spoken', value: 'In many regions' },
-      { label: 'Script', value: 'Latin alphabet' },
-    ],
+  });
+
+  const handleStart = () => {
+    navigate(`/learn/${language}`);
   };
 
-  const handleStart=()=>{
-    navigate(`/learning/${language}`)
-  }
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/user/${email}`);
+        setUser(response.data);
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
+
+    const fetchLanguageInfo = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/language/${language}`);
+        const { details, difficultyLevel, commonlySpoken, script, exercises } = response.data;
+        setLanguageInfo((prevLanguageInfo) => ({
+          ...prevLanguageInfo,
+          about: details,
+          totalExercises: exercises.length,
+          additionalInfo: [
+            { label: 'Difficulty Level', value: difficultyLevel },
+            { label: 'Commonly Spoken', value: commonlySpoken },
+            { label: 'Script', value: script },
+          ],
+        }));
+      } catch (error) {
+        console.error('Error fetching language information:', error);
+      }
+    };
+
+    fetchUserDetails();
+    fetchLanguageInfo();
+  }, [email, language]);
+
+  useEffect(() => {
+    const languageLearning = user.learnings && user.learnings.find((learning) => learning.name === languageInfo.name);
+    if (languageLearning) {
+      setLanguageInfo((prevLanguageInfo) => ({
+        ...prevLanguageInfo,
+        completedExercises: languageLearning.exercisesCompleted,
+        remainingExercises: prevLanguageInfo.totalExercises - languageLearning.exercisesCompleted,
+        progress: Math.ceil((languageLearning.exercisesCompleted / prevLanguageInfo.totalExercises) * 100),
+      }));
+    }
+  }, [languageInfo.name, user.learnings]);
 
   return (
     <>
@@ -62,15 +106,16 @@ const LanguageProfile = () => {
           </div>
         </div>
         <div className="language-info">
-          <div className='lang-details'>
+          <div className="lang-details">
             <p>Total Exercises: {languageInfo.totalExercises}</p>
             <p>Completed Exercises: {languageInfo.completedExercises}</p>
             <p>Remaining Exercises: {languageInfo.remainingExercises}</p>
           </div>
           <div className="progress-section">
             <h3 className="section-title">Progress</h3>
+            {languageInfo.progress?languageInfo.progress:0}% completed
             <Progress
-              percent={Math.ceil((languageInfo.completedExercises / languageInfo.totalExercises) * 100)}
+              percent={languageInfo.progress}
               status="active"
               strokeColor={{
                 '0%': '#108ee9',
@@ -81,7 +126,9 @@ const LanguageProfile = () => {
           </div>
         </div>
         <div className="start-learning">
-          <button className="start-btn" onClick={handleStart}>{languageInfo.completedExercises>0 ? "continue Learning" : "Start Learning"}</button>
+          <button className="start-btn" onClick={handleStart}>
+            {languageInfo.completedExercises > 0 ? 'continue Learning' : 'Start Learning'}
+          </button>
         </div>
       </div>
     </>

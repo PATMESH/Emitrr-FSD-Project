@@ -82,7 +82,7 @@ function Courses() {
                           <p >{language.name}</p>
                           <div style={{ width: "50px", display: "flex" }}>
                               <button
-                                style={{ marginLeft: "-100px",marginRight:'40px'}}
+                                style={{ marginLeft: "-100px",marginRight:'30px'}}
                                 className="delete-button"
                               >
                               <FontAwesomeIcon icon={faTrash} className="trash-icon"></FontAwesomeIcon>
@@ -106,7 +106,7 @@ function Courses() {
                               fontWeight: "500",
                             }}
                             >
-                              Test
+                              Exercise
                             </button>
                           </div>
                         </li>

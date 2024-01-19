@@ -40,7 +40,6 @@ function Login({setUser}) {
           const ud = await userDetailsResponse.json();
           localStorage.setItem("name", ud["username"]);
           localStorage.setItem("email", ud["email"]);
-          console.log("Hello");
           setUser({ name: ud["name"], email: email, id: ud["id"] });
           navigate("/");
         } else {

@@ -6,6 +6,27 @@ import { useNavigate } from "react-router-dom";
 const SelectLanguage = () => {
   const navigate = useNavigate();
   const [selectedLanguage, setSelectedLanguage] = useState(null);
+  const id = localStorage.getItem("email");
+  const [userLearning, setUserLearning] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/user/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setUserLearning(data.learnings);
+      })
+      .catch((error) => {
+        console.error("Error fetching user details:", error);
+      });
+  }, [id]);
+
+
+  useEffect(()=>{
+    if(userLearning.length>0){
+      navigate("/mylearnings")
+    }
+  },[userLearning])
+
   const handleLanguageSelect = (language) => {
     setSelectedLanguage(language.name);
   };
@@ -23,8 +44,28 @@ const SelectLanguage = () => {
   }, []);
 
   const handleStartLearning = () => {
-    navigate(`/LanguageProfile/${selectedLanguage}`)
-  }
+    if (selectedLanguage) {
+      fetch(`http://localhost:8000/startLearning`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: id,
+          selectedLanguage: selectedLanguage,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          navigate(`/LanguageProfile/${selectedLanguage}`);
+        })
+        .catch((error) => {
+          console.error("Error sending data to backend:", error);
+        });
+    }
+  };
+  
 
   return (
     <>

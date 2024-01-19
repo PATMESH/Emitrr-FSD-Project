@@ -37,9 +37,9 @@ mongoose
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Language'
       },
+      name:String,
       progress: Number,
-      exercisesCompleted: Number,
-      totalExercises: Number
+      exercisesCompleted: Number
     }]
   });
   
@@ -140,9 +140,9 @@ app.get('/languages', async (req, res) => {
     }
   });
   
-  app.get('/language/:id', async (req, res) => {
+  app.get('/language/:name', async (req, res) => {
     try {
-      const language = await Language.findById(req.params.id);
+      const language = await Language.findOne({ name: req.params.name }); 
       if (!language) {
         return res.status(404).json({ error: 'Language not found' });
       }
@@ -172,6 +172,46 @@ app.get('/languages', async (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
     }
   });  
+
+  app.post('/startLearning', async (req, res) => {
+    try {
+      const { email, selectedLanguage } = req.body;
+  
+      const user = await User.findOne({ email });
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      const language = await Language.findOne({ name: selectedLanguage });
+  
+      if (!language) {
+        return res.status(404).json({ error: 'Language not found' });
+      }
+  
+      const existingLearning = user.learnings.find(learning => learning.language.equals(language._id));
+  
+      if (existingLearning) {
+        return res.status(400).json({ error: 'User is already learning this language' });
+      }
+  
+      user.learnings.push({
+        language: language._id,
+        name:language.name, 
+        progress: 0,
+        exercisesCompleted: 0,
+        totalExercises: 0,
+      });
+  
+      await user.save();
+  
+      res.status(200).json({ message: 'Learning started successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
   
   app.post('/exercise/:languageId', async (req, res) => {
     try {
@@ -205,6 +245,49 @@ app.get('/languages', async (req, res) => {
       res.status(200).json({ message: 'Exercise updated successfully' });
     } catch (error) {
       console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+
+  app.post('/language/:id/exercises', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const language = await Language.findById(id);
+      if (!language) {
+        return res.status(404).json({ error: 'Language not found' });
+      }
+  
+      const { title, question, options, correctOption } = req.body;
+  
+      const existingExercise = language.exercises.find((exercise) => exercise.title === title);
+  
+      if (existingExercise) {
+        existingExercise.questions.push({
+          question,
+          options,
+          correctOption,
+        });
+      } else {
+        const newExercise = {
+          title,
+          questions: [
+            {
+              question,
+              options,
+              correctOption,
+            },
+          ],
+        };
+  
+        language.exercises.push(newExercise);
+      }
+  
+      await language.save();
+  
+      res.status(201).json({ message: 'Exercise added successfully' });
+    } catch (error) {
+      console.error('Error adding exercise:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
   });

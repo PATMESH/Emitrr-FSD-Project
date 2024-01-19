@@ -70,7 +70,7 @@ const CustomNavbar = ({ page }) => {
                 <div className={`dropdown-menu ${open ? 'active' : 'inactive'}`}>
                   <ul>
                     <DropdownItem icon={faUser} text={'My Profile'} path="/profile" onClick={() => handleDropdownItemClick('/profile')} />
-                    <DropdownItem icon={faBook} text={'Learning'} path="/learnings" onClick={() => handleDropdownItemClick('/learnings')} />
+                    <DropdownItem icon={faBook} text={'Learnings'} path="/mylearnings" onClick={() => handleDropdownItemClick('/mylearnings')} />
                     <DropdownItem icon={faSignOutAlt} text={'Logout'} path="/" onClick={() => handleDropdownItemClick('/')} />
                   </ul>
                 </div>

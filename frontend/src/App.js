@@ -6,12 +6,14 @@ import UserProfile from "./components/UserProfile";
 import RegistrationForm from "./components/Register";
 import SelectLanguage from "./components/SelectLanguage";
 import LanguageProfile from "./components/LanguageProfile";
-import Learning from "./components/Learning";
+import Learnings from "./components/Learnings";
 import Dashboard from "./components/DashBoard/Dashboard";
 import Users from "./components/DashBoard/DUsers";
 import Courses from "./components/DashBoard/DLanguages";
 import AddLanguage from "./components/DashBoard/AddLanguage";
 import Profile from "./components/profile";
+import LearnPage from "./components/LearnPage";
+import AddQuestions from "./components/DashBoard/AddQuestions";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,7 +32,11 @@ function App() {
             path="/LanguageProfile/:language"
             element={<LanguageProfile />}
           ></Route>
-          <Route path="/Learning/:language" element={<Learning />}></Route>
+          <Route
+            path="/learn/:language"
+            element={<LearnPage />}
+          ></Route>
+          <Route path="/mylearnings" element={<Learnings />}></Route>
           <Route path="/select" element={<SelectLanguage />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/" element={<Home />}></Route>
@@ -38,6 +44,7 @@ function App() {
           <Route path="/Dusers" element={<Users />}></Route>
           <Route path="/DLanguages" element={<Courses />}></Route>
           <Route path="/addlanguage" element={<AddLanguage />}></Route>
+          <Route path="/addquestions/:id" element={<AddQuestions />}></Route>
         </Routes>
       </div>
     </Router>
