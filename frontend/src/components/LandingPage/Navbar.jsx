@@ -31,8 +31,12 @@ const CustomNavbar = ({ page }) => {
     navigate("/login");
   };
 
-  const handleDropdownItemClick = (path) => {
+  const handleDropdownItemClick = async(path) => {
     setOpen(false);
+    if(path == "/"){
+      await localStorage.removeItem("name");
+      await localStorage.removeItem("email");
+    }
     navigate(path);
   };
 
