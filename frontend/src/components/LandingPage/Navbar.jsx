@@ -42,7 +42,6 @@ const CustomNavbar = ({ page }) => {
   };
   
 
-
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top" className="custom-navbar">
       <Navbar.Brand>LangVerse</Navbar.Brand>

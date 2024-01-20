@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./LandingPage/Navbar";
+import { Spin } from "antd";
 
 function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const name = localStorage.getItem("name");
 
   const navigate = useNavigate();
@@ -18,14 +20,29 @@ function Login({ setUser }) {
 
   const login = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    if(email === ''){
+      setError("Enter your email");
+      setLoading(false);
+      return;
+    }
+    if(password === ''){
+      setEmail("Enter your password");
+      setLoading(false);
+      return;
+    }
+    setError(null)
     try {
-      const response = await fetch("https://language-learning-game-z20w.onrender.com/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "https://language-learning-game-z20w.onrender.com/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
@@ -55,8 +72,12 @@ function Login({ setUser }) {
       }
     } catch (error) {
       setError("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
+
+
 
   return (
     <div>
@@ -98,8 +119,7 @@ function Login({ setUser }) {
               </button>
             </div>
           </form>
-          {error && <span className="error-msg">{error}</span>}
-          <br />
+          {error ? <span className="error-msg">{error}</span> : (loading ? <Spin /> : <></>)}
           <span>
             Don't have an account? Register
             <Link to="/register"> Here</Link>
