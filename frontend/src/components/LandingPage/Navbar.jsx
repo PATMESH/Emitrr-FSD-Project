@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link } from "react-scroll";
-import { useNavigate,NavLink} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faBook, faEdit, faSignOutAlt, faUserCircle, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faBook, faSignOutAlt, faUserCircle, faBars } from "@fortawesome/free-solid-svg-icons";
 
 const CustomNavbar = ({ page }) => {
   const name = localStorage.getItem("name");
   const isAuthenticated = !!name;
   const navigate = useNavigate();
-  
+
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -19,9 +19,9 @@ const CustomNavbar = ({ page }) => {
         setOpen(false);
       }
     };
-  
+
     document.addEventListener("mousedown", handleClickOutside);
-  
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -31,12 +31,12 @@ const CustomNavbar = ({ page }) => {
     navigate("/login");
   };
 
-  const handleDropdownItemClick = async (path) => {
+  const handleDropdownItemClick = (path, navigate) => {
     setOpen(false);
     console.log(path);
     if (path === '/') {
-      await localStorage.removeItem("name");
-      await localStorage.removeItem("email");
+      localStorage.removeItem("name");
+      localStorage.removeItem("email");
     }
     navigate(path);
   };
@@ -100,13 +100,18 @@ const CustomNavbar = ({ page }) => {
   );
 };
 
-const DropdownItem = ({ icon, text, path , handleDropdownItemClick }) => (
-  <li className="dropdownItem">
-      <NavLink activeClassName="active-nav" onClick={()=>handleDropdownItemClick(path)}>
-        <FontAwesomeIcon icon={icon} style={{marginRight:'5px'}}/>
+const DropdownItem = ({ icon, text, path, handleDropdownItemClick }) => {
+  const navigate = useNavigate();
+
+  return (
+    <li className="dropdownItem">
+      <div onClick={() => handleDropdownItemClick(path, navigate)}>
+        <FontAwesomeIcon icon={icon} style={{ marginRight: '5px' }} />
         {text}
-      </NavLink>
+      </div>
     </li>
-);
+  );
+};
+
 
 export default CustomNavbar;

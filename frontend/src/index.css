@@ -914,7 +914,7 @@ span a:hover {
 }
 
 
-.dropdown-menu ul li a{
+.dropdown-menu ul li{
   padding: 10px  0;
   color: #053e74;
   text-decoration: none;
@@ -924,7 +924,7 @@ span a:hover {
   border-bottom: 1px solid rgba(12, 0, 78, 0.116);
 }
 
-.dropdown-menu ul li:hover a{
+.dropdown-menu ul li:hover{
   color: rgb(212, 33, 9);
   cursor: pointer;
 }
