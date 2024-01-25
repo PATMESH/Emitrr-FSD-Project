@@ -37,6 +37,7 @@ const CustomNavbar = ({ page }) => {
     if (path === '/') {
       localStorage.removeItem("name");
       localStorage.removeItem("email");
+      localStorage.removeItem("learn");
     }
     navigate(path);
   };
@@ -44,7 +45,7 @@ const CustomNavbar = ({ page }) => {
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top" className="custom-navbar">
-      <Navbar.Brand>LangVerse</Navbar.Brand>
+      <Navbar.Brand onClick={()=>navigate("/")} style={{cursor:'pointer'}}>LangVerse</Navbar.Brand>
       <Navbar.Collapse id="navbar-nav">
         {page === "home" ? (
           <Nav className="ml-auto">

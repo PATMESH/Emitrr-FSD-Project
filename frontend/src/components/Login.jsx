@@ -9,14 +9,18 @@ function Login({ setUser }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const name = localStorage.getItem("name");
+  const learn = localStorage.getItem("learn");
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (name) {
+    if(learn){
+      navigate("/mylearnings")
+    }
+    else if (name) {
       navigate("/select");
     }
-  });
+  },[]);
 
   const login = async (e) => {
     e.preventDefault();
@@ -45,20 +49,17 @@ function Login({ setUser }) {
       );
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("token", data.token);
         localStorage.setItem("email", email);
-        console.log(data.token);
         const userDetailsResponse = await fetch(
           `https://language-learning-game-z20w.onrender.com/user/${email}`
         );
 
         if (userDetailsResponse.ok) {
           const ud = await userDetailsResponse.json();
-          localStorage.setItem("name", ud["username"]);
-          localStorage.setItem("email", ud["email"]);
-          setUser({ name: ud["name"], email: email, id: ud["id"] });
-
+          localStorage.setItem("name", ud.username);
+          localStorage.setItem("email", email);
           if (ud.learnings.length > 0) {
+            await localStorage.setItem("learn" , "Yes");
             navigate("/mylearnings");
           } else {
             navigate("/select");
