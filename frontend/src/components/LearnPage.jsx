@@ -4,8 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ExerciseCard from './ExerciseCard';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const LearnPage = () => {
   const { pathname } = useLocation();
@@ -48,7 +46,7 @@ const LearnPage = () => {
         completedExercises: currentExerciseIndex,
       }));
       const progress = (currentExerciseIndex / languageInfo.exercises.length) * 100;
-      const { name, completedExercises } = languageInfo;
+      const { name } = languageInfo;
       updateLearningProgress(name, currentExerciseIndex, progress);
     }
   }, [currentExerciseIndex]);
@@ -115,7 +113,7 @@ const LearnPage = () => {
   };
 
   const onFinish = async()=>{
-    const response = await axios.put(`https://language-learning-game-z20w.onrender.com/update-learning/${email}`, {
+    await axios.put(`https://language-learning-game-z20w.onrender.com/update-learning/${email}`, {
         language,
         exercisesCompleted : languageInfo.exercises.length,
         progress:100,
@@ -128,7 +126,7 @@ const LearnPage = () => {
       <CustomNavbar />
       <div>
         <div style={{display:'flex' , justifyContent:'space-between' , padding:' 10px 30px'}}>
-        <div><h1>{languageInfo.name} Learning</h1></div>
+        <div><h3 style={{fontSize:"24px"}}>{languageInfo.name} Learning</h3></div>
         <div><button className='quit-btn' onClick={()=>navigate("/mylearnings")}>Quit Learning...</button></div>
         </div>
         <p style={{padding:'10px 30px'}}>Completed Exercises: {languageInfo.completedExercises}</p>

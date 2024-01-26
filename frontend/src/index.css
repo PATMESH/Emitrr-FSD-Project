@@ -1567,3 +1567,11 @@ button{
 .disabled-nav-btn:hover{
   background-color: #ccc;
 }
+
+
+@media (max-width: 767px) {
+  .quit-btn{
+    padding: 10px;
+    width: max-content;
+  }
+}
