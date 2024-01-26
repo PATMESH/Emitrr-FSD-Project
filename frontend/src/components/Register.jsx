@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from './LandingPage/Navbar'
+import { Spin } from "antd";
 
 function RegistrationForm() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -23,7 +25,7 @@ function RegistrationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await fetch("https://language-learning-game-z20w.onrender.com/register", {
         method: "POST",
@@ -38,9 +40,11 @@ function RegistrationForm() {
         navigate("/login");
       } else {
         const data = await response.json();
+        setLoading(false);
         setError(data.error);
       }
     } catch (error) {
+      setLoading(false);
       setError("Registration error:", error);
     }
   };
@@ -162,7 +166,7 @@ function RegistrationForm() {
                 />
               </div>
             </div>
-            {error && <span className="registration-error-msg">{error}</span>}
+            {error ? <span className="registration-error-msg">{error}</span> : (loading ? <Spin /> : <></>)}
             <div className="registration-btn1">
               <button type="submit">Register</button>
             </div>

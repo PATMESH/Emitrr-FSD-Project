@@ -33,7 +33,6 @@ const CustomNavbar = ({ page }) => {
 
   const handleDropdownItemClick = (path, navigate) => {
     setOpen(false);
-    console.log(path);
     if (path === '/') {
       localStorage.removeItem("name");
       localStorage.removeItem("email");

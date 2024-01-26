@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-const QuestionCard = ({ question, showAnswer, onShowAnswer, onOptionSelect, selectedOption }) => (
+const QuestionCard = ({ question, showAnswer, onOptionSelect, selectedOption }) => (
   <div className="question-container">
     <h3>{question.question}</h3>
     <form>
@@ -19,36 +18,40 @@ const QuestionCard = ({ question, showAnswer, onShowAnswer, onOptionSelect, sele
         </label>
       ))}
     </form>
-    {showAnswer && (
+    {showAnswer ? (
       <p className={selectedOption === question.correctOption ? 'correct' : 'incorrect'}>
         {selectedOption === question.correctOption ? 'Correct!' : 'Wrong!'}
       </p>
-    )}
-    <button onClick={onShowAnswer} className="show-answer-btn">
-      Show Answer
-    </button>
+    ) : <br></br>}
   </div>
 );
 
 const ExerciseCard = ({ exercise, onNextClick, onPrevClick , len , idx , onFinish}) => {
+
   const [showAnswers, setShowAnswers] = useState(Array(exercise.questions.length).fill(false));
   const [selectedOptions, setSelectedOptions] = useState(Array(exercise.questions.length).fill(null));
+  const [correctCount, setCorrectCount] = useState(0);
 
-  const handleShowAnswer = (index) => {
-    setShowAnswers((prevShowAnswers) => {
-      const newShowAnswers = [...prevShowAnswers];
-      newShowAnswers[index] = true;
-      return newShowAnswers;
-    });
-  };
+  useEffect(()=>{
+    setShowAnswers(Array(exercise.questions.length).fill(false));
+    setSelectedOptions(Array(exercise.questions.length).fill(null));
+    setCorrectCount(0);
+  },[exercise]);
 
   const handleOptionSelect = (index, selectedOption) => {
+    setShowAnswers(Array(exercise.questions.length).fill(false));
     setSelectedOptions((prevSelectedOptions) => {
       const newSelectedOptions = [...prevSelectedOptions];
       newSelectedOptions[index] = selectedOption;
       return newSelectedOptions;
     });
   };
+
+  const checkAnswers = () =>{
+    const count = selectedOptions.filter((selectedOption, index) => selectedOption === exercise.questions[index].correctOption).length;
+    setCorrectCount(count);
+    setShowAnswers(Array(exercise.questions.length).fill(true));
+  }
 
   return (
     <div className="exercise-card">
@@ -59,7 +62,6 @@ const ExerciseCard = ({ exercise, onNextClick, onPrevClick , len , idx , onFinis
             key={question._id}
             question={question}
             showAnswer={showAnswers[index]}
-            onShowAnswer={() => handleShowAnswer(index)}
             onOptionSelect={(selectedOption) => handleOptionSelect(index, selectedOption)}
             selectedOption={selectedOptions[index]}
           />
@@ -67,6 +69,7 @@ const ExerciseCard = ({ exercise, onNextClick, onPrevClick , len , idx , onFinis
       ) : (
         <p>No questions available for this exercise.</p>
       )}
+      <button className="show-answer-btn" onClick={checkAnswers}>Check Answers</button>
       <div className="nav-buttons">
           {idx > 0 ? (
             <button className="nav-button" onClick={onPrevClick}>
@@ -74,10 +77,10 @@ const ExerciseCard = ({ exercise, onNextClick, onPrevClick , len , idx , onFinis
             </button>
           ):<button></button>}
           {idx < len - 1 ? (
-            <button className="nav-button" onClick={onNextClick}>
+            <button className={`${correctCount === exercise.questions.length ? 'nav-button' : 'disabled-nav-btn'}`} onClick={onNextClick} disabled={!(correctCount===exercise.questions.length)}>
               Next <FontAwesomeIcon icon={faChevronRight} />
             </button>
-          ):<button className="nav-button" onClick={onFinish}>
+          ):<button className={`${correctCount === exercise.questions.length ? 'nav-button' : 'disabled-nav-btn'}`} onClick={onFinish} disabled={!(correctCount===exercise.questions.length)}>
               Finish Learning <FontAwesomeIcon icon={faChevronRight} />
             </button>}
         </div>
