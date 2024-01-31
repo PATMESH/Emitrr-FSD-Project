@@ -16,14 +16,17 @@ body{
 }
 
 .auth {
-  background-image: url("https://www.yudiz.com/codepen/animation-form/banner.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 89vh;
   display: flex;
   justify-content: center;
   padding-top: 3%;
   position: relative;
+}
+
+.auth-main{
+  background-image: url("https://www.yudiz.com/codepen/animation-form/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -34,9 +37,8 @@ body{
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   max-width: 800px;
-  max-height: 65vh;
   margin: 0 auto;
-  padding: 20px 50px;
+  padding: 35px 50px;
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -132,22 +134,17 @@ span a:hover {
 
 
 .registration-auth {
-  background-image: url("https://www.yudiz.com/codepen/animation-form/banner.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 89vh;
   display: flex;
   justify-content: center;
   padding-top: 3%;
   position: relative;
-  overflow: hidden;
 }
 
 .registration-container {
-  height: 70vh;
+  height: auto;
   width: 70%;
-  padding: 10px;
-  padding-bottom: 1px;
+  padding: 20px;
+  padding-bottom: 20px;
   padding-top: 40px;
   border: 1px solid #92abbba2;
   border-radius: 8px;
@@ -167,29 +164,25 @@ span a:hover {
 
 .registration-input-group {
   display: flex;
-  margin-bottom: 16px;
-  width: 100%;
-  overflow: hidden;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .registration-input-group div {
+  width: 50%;
   display: flex;
-  flex-direction: row;
 }
 
 .registration-text-area {
-  padding: 10px;
-  width: 130px;
-  text-align: right;
-  margin-right: 10px;
+  text-align: end;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: end;
+  margin-right: 5px;
 }
 
-.registration-input-group input {
-  flex: 1;
-  padding: 10px;
-  width: 280px;
+.registration-input-group input{
+  width: 100%;
 }
 
 .registration-btn1{
@@ -452,12 +445,12 @@ span a:hover {
 
 @media (max-width: 768px) {
   .auth{
-    height: 84vh;
+    height: auto;
     padding: 16px 6px;
   }
-  .container {
-    margin-top: 30px;
-    padding: 5px 40px;
+  
+  .auth-main{
+    height: 110vh;
   }
 
   input[type="text"],
@@ -479,10 +472,10 @@ span a:hover {
   }
 
   .registration-container {
-    height: 94vh;
     width: 100%;
     padding-left: 20px;
     padding-top: 10px;
+    padding-bottom: 20px;
   }
   .registration-input-group {
     display: block;
@@ -507,7 +500,7 @@ span a:hover {
     width: 90%;
   }
   .registration-auth {
-    height: 100vh;
+    height: auto;
   }
 }
 
@@ -631,7 +624,7 @@ span a:hover {
 
 .btn-get-started {
   background-color: #0b58aa;
-  border-radius: 10px;
+  border-radius: 6px;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -699,7 +692,7 @@ span a:hover {
   }
 
   .custom-navbar .navbar-brand{
-    font-size: 23px;
+    font-size: 18px;
     margin-top: 1px;
   }
 
@@ -712,7 +705,7 @@ span a:hover {
   }
 
   .custom-navbar .navbar-nav .nav-link {
-    margin-left: 5px;
+    margin-left: 2px;
     margin-right: 5px;
   }
 
@@ -720,7 +713,7 @@ span a:hover {
     margin-left: 0;
   }
   .btn-get-started {
-    padding: 8px 12px;
+    padding: 6px;
   }
 }
 

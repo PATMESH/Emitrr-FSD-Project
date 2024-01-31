@@ -81,7 +81,7 @@ function Login({ setUser }) {
 
 
   return (
-    <div>
+    <div className="auth-main">
       <Navbar />
       <div className="auth">
         <div className="imagebg"></div>

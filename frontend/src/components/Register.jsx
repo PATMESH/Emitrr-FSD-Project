@@ -50,7 +50,7 @@ function RegistrationForm() {
   };
 
   return (
-    <div>
+    <div className="auth-main">
     <Navbar/>
       <div className="registration-auth">
       <div className="imagebg"></div>
